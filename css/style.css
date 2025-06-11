@@ -475,47 +475,57 @@ button:hover {
 
     /* Ajustes para as flores de fundo (para não ficarem muito grandes ou cortadas) */
     .flowers-animated-background {
-        transform: scale(0.6) !important; /* Reduz a escala geral das flores no celular */
-        left: 50% !important; /* Centraliza o background animado */
-        transform: translateX(-50%) scale(0.6) !important; /* Centraliza e ajusta escala */
-        bottom: 0 !important; /* Garante que fique na base */
-        top: auto !important; /* Garante que não tenha top estranho */
+        /* Resetar left/top para que as flores sejam posicionadas relativas à tela inteira */
+        left: 0 !important; 
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        /* Escala menor para que as flores pareçam mais distantes e preencham sem serem gigantes */
+        transform: scale(0.4) !important; /* Valor ainda menor para celular */
+        transform-origin: center bottom !important; /* Garante que a escala mantenha a base */
     }
 
     /* Ajuste as flores individuais para mobile (elas são filhas de flowers-animated-background) */
     /* Usando !important para forçar se houver conflito */
     .flower {
-        bottom: 5vmin !important; /* Posição mais baixa */
+        bottom: 5vmin !important; 
         --fl-speed: 1.2s !important; /* Animação mais lenta para mobile */
     }
-    .flower--1 { left: 50% !important; transform: translateX(-50%) scale(0.8) !important; } /* Centraliza e escala */
-    .flower--2 { left: 10% !important; bottom: 20vmin !important; transform: rotate(20deg) scale(0.7) !important; } /* Posição e escala */
-    .flower--3 { left: 90% !important; bottom: 0vmin !important; transform: rotate(-15deg) scale(0.6) !important; } /* Posição e escala */
+    /* Recalibrar posições left e escalas para cada flor individual */
+    .flower--1 { left: 20% !important; transform: translateX(-50%) scale(0.9) !important; } 
+    .flower--2 { left: 80% !important; bottom: 10vmin !important; transform: rotate(20deg) scale(0.8) !important; } 
+    .flower--3 { left: 50% !important; bottom: -5vmin !important; transform: translateX(-50%) rotate(-15deg) scale(0.7) !important; } 
 
     /* Flores clonadas para espalhar melhor e serem menores */
-    .flower--4 { left: 20% !important; bottom: -5vmin !important; transform: scale(0.4) rotate(10deg) !important; } 
-    .flower--5 { left: 70% !important; bottom: 5vmin !important; transform: scale(0.35) rotate(-20deg) !important; }
-    .flower--6 { left: 40% !important; bottom: 25vmin !important; transform: scale(0.5) rotate(30deg) !important; }
-    .flower--7 { left: 0% !important; bottom: -15vmin !important; transform: scale(0.25) rotate(40deg) !important; }
-    .flower--8 { left: 100% !important; bottom: -10vmin !important; transform: scale(0.2) rotate(-50deg) !important; }
-    .flower--9 { left: 50% !important; bottom: -40vmin !important; transform: translateX(-50%) scale(0.15) rotate(15deg) !important; }
+    .flower--4 { left: 0% !important; bottom: -10vmin !important; transform: scale(0.3) rotate(10deg) !important; } 
+    .flower--5 { left: 100% !important; bottom: 0vmin !important; transform: scale(0.3) rotate(-20deg) !important; }
+    .flower--6 { left: 15% !important; bottom: 30vmin !important; transform: scale(0.4) rotate(30deg) !important; }
+    .flower--7 { left: 70% !important; bottom: -5vmin !important; transform: scale(0.25) rotate(40deg) !important; }
+    .flower--8 { left: 30% !important; bottom: -20vmin !important; transform: scale(0.2) rotate(-50deg) !important; }
+    .flower--9 { left: 95% !important; bottom: -30vmin !important; transform: scale(0.15) rotate(15deg) !important; }
 
     /* Ajuste de posição e escala para os elementos da grama e caules mais longos */
-    .growing-grass { transform: scale(0.5) !important; left: 50% !important; transform: translateX(-50%) scale(0.5) !important; bottom: 0 !important;}
-    .flower__grass--cloned { transform: scale(0.4) !important; left: 50% !important; transform: translateX(-50%) scale(0.4) !important; bottom: -5vmin !important;}
-    .grow-ans .flower__g-long { transform: scale(0.5) !important; left: 50% !important; transform: translateX(-50%) scale(0.5) !important;}
-    .grow-ans .flower__g-right { transform: scale(0.5) !important; left: 50% !important; transform: translateX(-50%) scale(0.5) !important;}
-    .grow-ans .flower__g-front { transform: scale(0.5) !important; left: 50% !important; transform: translateX(-50%) scale(0.5) !important;}
-    .grow-ans .flower__g-fr { transform: scale(0.5) !important; left: 50% !important; transform: translateX(-50%) scale(0.5) !important;}
-    .long-g { transform: scale(0.4) !important; left: 50% !important; transform: translateX(-50%) scale(0.4) !important; bottom: 0 !important;}
+    /* São elementos maiores e devem ser bem reduzidos e posicionados para não dominar a tela */
+    .growing-grass { transform: scale(0.3) !important; left: 50% !important; transform: translateX(-50%) scale(0.3) !important; bottom: 0 !important;}
+    .flower__grass--cloned { transform: scale(0.25) !important; left: 50% !important; transform: translateX(-50%) scale(0.25) !important; bottom: -5vmin !important;}
+    .grow-ans .flower__g-long { transform: scale(0.3) !important; left: 50% !important; transform: translateX(-50%) scale(0.3) !important;}
+    .grow-ans .flower__g-right { transform: scale(0.3) !important; left: 50% !important; transform: translateX(-50%) scale(0.3) !important;}
+    .grow-ans .flower__g-front { transform: scale(0.3) !important; left: 50% !important; transform: translateX(-50%) scale(0.3) !important;}
+    .grow-ans .flower__g-fr { transform: scale(0.3) !important; left: 50% !important; transform: translateX(-50%) scale(0.3) !important;}
+    .long-g { transform: scale(0.2) !important; left: 50% !important; transform: translateX(-50%) scale(0.2) !important; bottom: 0 !important;}
 
-    /* CONTROLE DE MÚSICA NO CELULAR */
+    /* CONTROLE DE MÚSICA NO CELULAR (Posicionado fixo no canto inferior direito) */
     .music-controls {
         bottom: 10px !important; 
         right: 10px !important;
         left: auto !important; /* Garante que não tenha left indesejado */
         padding: 5px !important; 
         transform: none !important; /* Remove qualquer transform */
+        width: auto !important; /* Ajusta a largura ao conteúdo */
+        height: auto !important; /* Ajusta a altura ao conteúdo */
+        position: fixed !important; /* Garante que ele fique fixo */
+        display: block !important; /* Garante que ele seja um bloco visível */
+        opacity: 1 !important; /* Garante que não esteja transparente */
     }
     .music-controls button {
         padding: 8px 12px !important; 
