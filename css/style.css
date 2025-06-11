@@ -16,6 +16,7 @@ body {
     overflow: hidden; 
     position: relative;
     perspective: 1000px;
+    min-width: 320px; /* Garante que o body não fique menor que 320px */
 }
 
 /* Cronômetro Global no Topo */
@@ -123,7 +124,7 @@ button:hover {
     transform: translateY(-2px); 
 }
 
-/* --- ESTILOS DA SEGUNDA SEÇÃO (Mensagem Especial) --- */
+/* --- ESTILOS DA SEGUNDA SEÇÃO (sem flor na cúpula) --- */
 #second-section { 
     background-color: rgba(13, 13, 13, 0.9); 
 }
@@ -183,7 +184,7 @@ button:hover {
 .night {
     position: fixed;
     top: 0;
-    left: 0; /* Ajustado para 0 */
+    left: 0; 
     width: 100%;
     height: 100%;
     filter: blur(0.1vmin);
@@ -194,16 +195,16 @@ button:hover {
     repeating-linear-gradient(148deg, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 19px, transparent 19px, transparent 22px), 
     linear-gradient(90deg, rgb(255, 105, 180), rgb(255, 50, 150)); 
     z-index: 50; 
-    transform: translateX(0); /* Removido o translateX(-50%) daqui */
+    transform: translateX(0); 
 }
 
 .flowers-animated-background { 
     position: fixed; 
     bottom: 0;
-    left: 0; /* Ajustado para 0 */
+    left: 0; 
     width: 100%;
     height: 100%;
-    transform: scale(1.2); /* Removido o translateX(-50%) daqui */
+    transform: scale(1.2); 
     pointer-events: none; 
     z-index: 51; 
 }
@@ -215,9 +216,9 @@ button:hover {
     z-index: 10;
     --fl-speed: 0.8s;
 }
-.flower--1 { animation: moving-flower-1 4s linear infinite; left: 50%; transform: translateX(-50%); } /* Ajustado para centrar */
-.flower--2 { left: 50%; transform: translateX(-50%) rotate(20deg); animation: moving-flower-2 4s linear infinite; } /* Ajustado para centrar */
-.flower--3 { left: 50%; transform: translateX(-50%) rotate(-15deg); animation: moving-flower-3 4s linear infinite; } /* Ajustado para centrar */
+.flower--1 { animation: moving-flower-1 4s linear infinite; left: 50%; transform: translateX(-50%); } 
+.flower--2 { left: 50%; transform: translateX(-50%) rotate(20deg); animation: moving-flower-2 4s linear infinite; } 
+.flower--3 { left: 50%; transform: translateX(-50%) rotate(-15deg); animation: moving-flower-3 4s linear infinite; } 
 
 /* Estilos para as flores clonadas e suas animações - Ajustado left para ser % da tela */
 .flower--4 { left: 10%; bottom: 5vmin; transform: scale(0.6) rotate(10deg); animation-delay: 0.5s; animation: moving-flower-1 4.5s linear infinite reverse; } 
@@ -474,7 +475,45 @@ button:hover {
 
     /* Ajustes para as flores de fundo (para não ficarem muito grandes) */
     .flowers-animated-background {
-        transform: translateX(-50%) scale(0.8); /* Reduz a escala geral das flores no celular */
-        /* Pode ser necessário ajustar as posições left/bottom das flores individuais para mobile também */
+        transform: translateX(-50%) scale(0.5); /* Reduz a escala geral das flores no celular para não cortar */
+        /* Ajuste left para centrar o background (que está em fixed) */
+        left: 50%;
+    }
+
+    /* Ajuste as flores individuais para mobile */
+    .flower {
+        bottom: 5vmin; /* Posição mais baixa */
+        --fl-speed: 1.2s; /* Animação mais lenta para mobile */
+    }
+    .flower--1 { left: 50%; transform: translateX(-50%) scale(1); } /* Centraliza e deixa o tamanho original */
+    .flower--2 { left: 50%; bottom: 20vmin; transform: translateX(-50%) rotate(20deg) scale(0.8); } /* Posiciona e escala um pouco menor */
+    .flower--3 { left: 50%; bottom: -5vmin; transform: translateX(-50%) rotate(-15deg) scale(0.7); } /* Posiciona e escala menor */
+
+    /* Flores clonadas para espalhar melhor */
+    .flower--4 { left: 10%; bottom: 15vmin; transform: scale(0.5) rotate(10deg); } 
+    .flower--5 { left: 90%; bottom: 0vmin; transform: scale(0.4) rotate(-20deg); }
+    .flower--6 { left: 25%; bottom: 40vmin; transform: scale(0.6) rotate(30deg); }
+    .flower--7 { left: 5%; bottom: -10vmin; transform: scale(0.3) rotate(40deg); }
+    .flower--8 { left: 80%; bottom: -20vmin; transform: scale(0.25) rotate(-50deg); }
+    .flower--9 { left: 50%; bottom: -30vmin; transform: scale(0.2) rotate(15deg); }
+
+    /* Ajuste de posição para os elementos da grama e caules mais longos */
+    .growing-grass { transform: translateX(-50%) scale(0.5) !important; left: 50% !important; bottom: 0 !important;}
+    .flower__grass--cloned { transform: translateX(-50%) scale(0.4) !important; left: 50% !important; bottom: -5vmin !important;}
+    .grow-ans .flower__g-long { transform: translateX(-50%) rotate(-30deg) rotateY(-20deg) scale(0.6) !important; left: 50% !important;}
+    .grow-ans .flower__g-right { transform: translateX(-50%) rotate(20deg) scale(0.5) !important; left: 50% !important;}
+    .grow-ans .flower__g-front { transform: translateX(-50%) rotate(-28deg) rotateY(30deg) scale(0.5) !important; left: 50% !important;}
+    .grow-ans .flower__g-fr { transform: translateX(-50%) rotate(2deg) scale(0.5) !important; left: 50% !important;}
+    .long-g { transform: translateX(-50%) scale(0.4) !important; left: 50% !important; bottom: 0 !important;}
+
+    /* CONTROLE DE MÚSICA NO CELULAR */
+    .music-controls {
+        bottom: 10px; /* Mais perto da borda inferior */
+        right: 10px; /* Mais perto da borda direita */
+        padding: 5px; /* Adiciona um pouco de espaço ao redor do botão */
+    }
+    .music-controls button {
+        padding: 8px 12px; /* Reduz o padding do botão */
+        font-size: 0.9em; /* Reduz o tamanho da fonte */
     }
 }
